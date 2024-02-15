@@ -126,6 +126,10 @@ input[type="text"] {
     align-items: center;
 }
 
+.rotateY {
+    transform: rotateY(180deg);
+}
+
 .input-wrapper {
     display: flex;
     width: 100%;
