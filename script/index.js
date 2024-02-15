@@ -40,6 +40,7 @@ function makeCode(text) {
 makeCode(qrInput.value.trim());
 
 qrPaste.addEventListener('click', (e) => {
+    navigator.clipboard.readText()
     navigator.permissions
         .query({ name: 'clipboard-read' })
         .then(allowed => {
