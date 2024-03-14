@@ -10,6 +10,8 @@ var qrcode = new QRCode(document.getElementById("qrcode"), {
 const container = document.querySelectorAll('.container');
 const navs = document.querySelectorAll('.nav__wrapper');
 
+const sizeSelector = document.querySelector('.size-selection');
+
 const qrInput = document.querySelector('#qr-code-input');
 const qrPaste = document.querySelector('.paste-for-qr');
 
@@ -28,6 +30,13 @@ navs.forEach((item, i) => {
         }
     })
 })
+
+// sizeSelector.addEventListener('click', (e) => {
+//     const target = e.target;
+//     if (target.dataset === 'sizeQr') {
+//         console.log(target);
+//     }
+// })
 
 qrInput.addEventListener('input', (e) => {
     qrcode.makeCode(qrInput.value.trim());
