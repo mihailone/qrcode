@@ -1,10 +1,10 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
-    setLocalStorage()
+    getLocalStorage()
 })
 
-function setLocalStorage() {
+function getLocalStorage() {
     if (LS.getItem('historyDB')) {
         const localDB = JSON.parse(LS.getItem('historyDB'))
         for (let key in localDB) {
@@ -96,16 +96,6 @@ function svedHistory(text) {
         LS.setItem('historyDB', JSON.stringify(historyDB))
     }
 }
-const debouncedHandle = debounce(printINputText, 500);
-
-function printINputText() {
-    if (qrInput.value.trim().length !== 0) {
-        qrcode.makeCode(qrInput.value.trim())
-        svedHistory(qrInput.value.trim())
-    }
-}
-
-qrInput.addEventListener('input', debouncedHandle)
 
 function makeCode(text) {
     qrcode.makeCode(text);
@@ -122,10 +112,12 @@ qrPaste.addEventListener('click', (e) => {
                 navigator.clipboard
                     .readText()
                     .then(text => {
-                        qrInput.value = ''
-                        qrInput.value = text.trim();
-                        makeCode(text.trim());
-                        svedHistory(text.trim())
+                        if (text.trim().length !== 0) {
+                            qrInput.value = '';
+                            qrInput.value = text.trim();
+                            makeCode(text.trim());
+                            svedHistory(text.trim())
+                        }
                     })
                     .catch(err => {
                         console.error(err);
@@ -233,3 +225,16 @@ function checkStatusSaveHistory(status) {
         document.querySelector('.save-history-button').classList.add('off-history');
     }
 }
+
+// print function
+
+const debouncedHandle = debounce(printINputText, 500);
+
+function printINputText() {
+    if (qrInput.value.trim().length !== 0) {
+        qrcode.makeCode(qrInput.value.trim())
+        svedHistory(qrInput.value.trim())
+    }
+}
+
+qrInput.addEventListener('input', debouncedHandle)
