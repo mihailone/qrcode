@@ -192,11 +192,34 @@ button {
         max-width: 47px;
         width: 100%;
         border-radius: 10px 0 0 10px;
+        fill: #fff;
+        transition: all .2s cubic-bezier(0.4, 0, 1, 1);
 
         &.off-history {
             background-color: #676767;
+            fill: #333;
         }
 
+    }
+
+    &.reverse-history {
+        max-width: 47px;
+        width: 100%;
+        height: 47px;
+        border-radius: 9999px;
+        background-color: #85a8ff;
+        fill: #fff;
+        margin-right: 10px;
+    }
+
+    &.remove-all-history {
+        max-width: 47px;
+        width: 100%;
+        height: 47px;
+        border-radius: 9999px;
+        background-color: #f44336;
+        fill: #fff;
+        margin-left: 10px;
     }
 }
 
@@ -216,7 +239,6 @@ button {
     width: 100%;
     display: flex;
     gap: 1vh;
-    padding: 20px 0;
     overflow: auto;
 }
 
@@ -226,7 +248,12 @@ span.history-text {
     border-radius: 10px;
     white-space: nowrap;
     display: flex;
-    gap: 5px;
+    align-items: center;
+
+    &.active-tab {
+        background-color: #cdf6c5;
+        box-shadow: inset 0 0 0 1px #333
+    }
 }
 
 span.remove-item-in-db {
@@ -235,6 +262,8 @@ span.remove-item-in-db {
     align-items: center;
     transition: background-color .2s ease-in-out;
     border-radius: 0 8px 8px 0;
+    width: 100%;
+    height: 100%;
 
     &:hover {
         background-color: #e79eaa;
@@ -245,4 +274,13 @@ span.remove-item-in-db {
 .hs-text {
     display: block;
     padding: 5px;
+}
+
+.history-row {
+    display: flex;
+    max-width: 600px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
 }

@@ -38,8 +38,8 @@
     </noscript>
     <!-- /Yandex.Metrika counter -->
     <main>
-        <nav>
-            <div class="nav__wrapper tab-active" data-nav-name="qrcode-gen" title="Qr Code">
+        <nav class="hidden">
+            <div class="nav__wrapper tab-active " data-nav-name="qrcode-gen" title="Qr Code">
                 <span class="svg-box"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960"
                         width="24">
                         <path
@@ -89,15 +89,7 @@
                 </div>
             </div> -->
             <div class="input-wrapper">
-                <button class="save-history-button" title="Выключить историю изменений">
-                    <span class="svg-box">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                            fill="#e8eaed">
-                            <path
-                                d="M480-120q-126 0-223-76.5T131-392q-4-15 6-27.5t27-14.5q16-2 29 6t18 24q24 90 99 147t170 57q117 0 198.5-81.5T760-480q0-117-81.5-198.5T480-760q-69 0-129 32t-101 88h70q17 0 28.5 11.5T360-600q0 17-11.5 28.5T320-560H160q-17 0-28.5-11.5T120-600v-160q0-17 11.5-28.5T160-800q17 0 28.5 11.5T200-760v54q51-64 124.5-99T480-840q75 0 140.5 28.5t114 77q48.5 48.5 77 114T840-480q0 75-28.5 140.5t-77 114q-48.5 48.5-114 77T480-120Zm40-376 100 100q11 11 11 28t-11 28q-11 11-28 11t-28-11L452-452q-6-6-9-13.5t-3-15.5v-159q0-17 11.5-28.5T480-680q17 0 28.5 11.5T520-640v144Z" />
-                        </svg>
-                    </span>
-                </button>
+                <button class="save-history-button" title="Выключить историю изменений"></button>
                 <input type="text" name="qr-code-input" id="qr-code-input" placeholder="qr code" value="qr code">
                 <button class="remover-text-in-input" title="Очистить поле ввода">
                     <span class="svg-box">
@@ -128,7 +120,8 @@
                 </svg>
             </output>
             <div class="input-wrapper">
-                <input type="text" name="barcode-input" id="barcode-input" placeholder="barcode">
+                <input type="text" name="barcode-input" id="barcode-input" placeholder="barcode"
+                    onFocus="this.select()">
                 <button class="paste add barcode-paste" title="Вставить из буфера обмена">
                     <span class="svg-box rotateY">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
@@ -149,7 +142,22 @@
             </output>
         </div>
         <div class="container">
-            <div class="history-output "></div>
+            <div class="history-row">
+                <button class="reverse-history hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                        <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
+                    </svg>
+                </button>
+                <div class="history-output"></div>
+                <button class="remove-all-history" title="Удалить всю историю">
+                    <span class="svg-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                            <path
+                                d="M520-162q0 17-12 29.5T479-120q-61-1-116-19.5T258-197q-45-35-77-82t-48-104q-5-16 4-30t25-19q16-5 30 3.5t19 24.5q12 45 38 82.5t61 64.5q36 28 80 42.5t89 14.5q17 0 29 11t12 27Zm220-41-56 55q-11 11-27.5 11.5T628-148q-11-11-11-28t11-28l56-56-56-56q-11-11-11-28t11-28q11-11 28-11t28 11l56 56 56-56q11-11 27.5-11.5T852-372q11 11 11 28t-11 28l-55 56 55 56q11 11 11.5 27.5T852-148q-11 11-28 11t-28-11l-56-55ZM480-760q-69 0-129 32t-101 88h70q17 0 28.5 11.5T360-600q0 17-11.5 28.5T320-560H160q-17 0-28.5-11.5T120-600v-160q0-17 11.5-28.5T160-800q17 0 28.5 11.5T200-760v54q51-64 124.5-99T480-840q75 0 140.5 28T735-735q40 40 67 92t35 111q2 17-7.5 30.5T803-486q-17 2-30.5-7.5T757-520q-7-46-27-86t-52-72q-38-38-88.5-60T480-760Zm40 264 48 48q14 14 12.5 29.5T568-392q-11 11-26.5 12.5T512-392l-60-60q-6-6-9-13.5t-3-15.5v-159q0-17 11.5-28.5T480-680q17 0 28.5 11.5T520-640v144Z" />
+                        </svg>
+                    </span>
+                </button>
+            </div>
         </div>
     </main>
     <script src="script/index.js"></script>
