@@ -73,7 +73,7 @@ output {
     max-width: 500px;
     max-height: 500px;
     width: 100%;
-    height: 100%;
+    height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -221,6 +221,18 @@ button {
         fill: #fff;
         margin-left: 10px;
     }
+
+    &.download {
+        position: relative;
+        background-color: #A5D6A7;
+        width: 47px;
+        height: 47px;
+        border-radius: 4px 10px 10px 4px;
+        transition: all .2s cubic-bezier(0.4, 0, 1, 1);
+        fill: #fff;
+
+        &:hover {}
+    }
 }
 
 .size-selection {
@@ -249,11 +261,17 @@ span.history-text {
     white-space: nowrap;
     display: flex;
     align-items: center;
+    height: 100%;
 
     &.active-tab {
         background-color: #cdf6c5;
         box-shadow: inset 0 0 0 1px #333
     }
+}
+
+.history-text:hover {
+    background-color: rgb(208 227 255);
+    transition: background-color .2s ease-in-out;
 }
 
 span.remove-item-in-db {
@@ -283,4 +301,69 @@ span.remove-item-in-db {
     flex-direction: row;
     justify-content: center;
     margin-top: 10px;
+}
+
+.qr-size {
+    flex-grow: 1;
+    max-width: 600px;
+    display: flex;
+    justify-content: space-around;
+    background-color: #85a8ff38;
+    border-radius: 10px 4px 4px 10px;
+    text-align: center;
+    align-items: center;
+    font: 15px / 27px Roboto, Arial, sans-serif;
+    font-weight: 600;
+}
+
+#qr-size {
+    width: 300px;
+}
+
+.header-container {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    gap: 4px;
+}
+
+.popup-info {
+    width: 155px;
+    right: 0px;
+    top: 47px;
+    position: absolute;
+    background-color: #fff;
+    color: #202124;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .08), 0 0 1px rgba(0, 0, 0, .16);
+    border-radius: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: 0.5s;
+    z-index: 300;
+    display: none;
+}
+
+.control-container:hover .popup-info {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+.popup-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    justify-content: center;
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--context-menu-hover);
+        color: #333;
+        fill: var(--svg-color);
+    }
 }

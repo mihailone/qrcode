@@ -21,6 +21,10 @@ function getLocalStorage() {
         saveHistory = JSON.parse(LS.getItem('saveHistoryStatus'))
         checkStatusSaveHistory(saveHistory)
     }
+    if (LS.getItem('qrSize')) {
+        qrSize.value = `${JSON.parse(LS.getItem('qrSize'))}`;
+        document.querySelector('#qrcode > img').style.width = `${JSON.parse(LS.getItem('qrSize'))}%`;
+    }
 }
 
 let saveHistory = true;
@@ -51,6 +55,10 @@ const historyOutput = document.querySelector('.history-output');
 const historyBtn = document.querySelector('.save-history-button');
 const allHistoryRemove = document.querySelector('.remove-all-history');
 
+const qrSize = document.querySelector('#qr-size');
+
+const downloadBtn = document.querySelector('.download');
+
 function historyPrint(text, id) {
     const html = `
     <span class="history-text" data-text-id="${id}">
@@ -70,19 +78,6 @@ function historyPrint(text, id) {
 
 inputTextRemove.addEventListener('click', (e) => {
     qrInput.value = '';
-})
-
-navs.forEach((item, i) => {
-    navs[i].addEventListener('click', (e) => {
-        for (let i = 0; i < navs.length; i++) {
-            navs[i].classList.remove('tab-active');
-            container[i].classList.add('hidden');
-        }
-        if (!navs[i].closest('tab-active')) {
-            navs[i].classList.add('tab-active');
-            container[i].classList.remove('hidden');
-        }
-    })
 })
 
 function svedHistory(text) {
@@ -106,53 +101,6 @@ function makeCode(text) {
 }
 
 makeCode(qrInput.value.trim());
-
-qrPaste.addEventListener('click', (e) => {
-    navigator.clipboard.readText()
-    navigator.permissions
-        .query({ name: 'clipboard-read' })
-        .then(allowed => {
-            if (allowed.state === 'granted') {
-                navigator.clipboard
-                    .readText()
-                    .then(text => {
-                        if (text.trim().length !== 0) {
-                            qrInput.value = '';
-                            qrInput.value = text.trim();
-                            makeCode(text.trim());
-                            svedHistory(text.trim())
-                        }
-                    })
-                    .catch(err => {
-                        console.error(err);
-                    });
-            } else {
-                console.log('Access to clipboard is denied');
-            }
-        })
-})
-
-
-// barPaste.addEventListener('click', (e) => {
-//     navigator.permissions
-//         .query({ name: 'clipboard-read' })
-//         .then(allowed => {
-//             if (allowed.state === 'granted') {
-//                 navigator.clipboard
-//                     .readText()
-//                     .then(text => {
-//                         barInput.value = ''
-//                         barInput.value = text.trim();
-//                     })
-//                     .catch(err => {
-//                         console.error(err);
-//                     });
-//             } else {
-//                 console.log('Access to clipboard is denied');
-//             }
-//         })
-// })
-
 
 //skroll history
 function scrollHorizontally(e) {
@@ -261,4 +209,58 @@ historyOutput.addEventListener('click', (e) => {
         item.classList.remove('active-tab')
     })
     target.closest('.history-text').classList.add('active-tab')
+})
+//qr seze 
+qrSize.addEventListener('input', (e) => {
+    document.querySelector('#qrcode > img').style.width = qrSize.value + '%';
+    LS.setItem('qrSize', JSON.stringify(qrSize.value))
+})
+
+//download 
+downloadBtn.addEventListener('click', (e) => {
+    const target = e.target;
+    const popupItem = target.closest('.popup-item');
+
+    if (popupItem && popupItem.dataset.sizeQr) {
+
+        const dImg = new QRCode(document.querySelector('.fake-container'), {
+            width: popupItem.dataset.sizeQr,
+            height: popupItem.dataset.sizeQr,
+            correctLevel: QRCode.CorrectLevel.H
+        });
+        dImg.makeCode(qrInput.value.trim())
+
+        const canvas = document.querySelector('.fake-container').children[0];
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = `s${popupItem.dataset.sizeQr}_${qrInput.value.trim()}.png`;
+        link.click();
+        document.querySelector('.fake-container').innerHTML = '';
+    }
+});
+
+//paste in history
+qrPaste.addEventListener('click', (e) => {
+    navigator.clipboard.readText()
+    navigator.permissions
+        .query({ name: 'clipboard-read' })
+        .then(allowed => {
+            if (allowed.state === 'granted') {
+                navigator.clipboard
+                    .readText()
+                    .then(text => {
+                        if (text.trim().length !== 0) {
+                            qrInput.value = '';
+                            qrInput.value = text.trim();
+                            makeCode(text.trim());
+                            svedHistory(text.trim())
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    });
+            } else {
+                console.log('Access to clipboard is denied');
+            }
+        })
 })

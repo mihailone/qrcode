@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="qr generator, barcode generator, generator, barcode, qr">
 
-    <title>qr/barcode generator</title>
+    <title>qr generator</title>
 
     <link rel="stylesheet" href="style/index.css">
     <script type="text/javascript" src="script/jquery.min.js"></script>
@@ -16,78 +16,54 @@
 </head>
 
 <body>
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function (m, e, t, r, i, k, a) {
-            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-            m[i].l = 1 * new Date();
-            for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
-            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-        })
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-        ym(96473680, "init", {
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true,
-            webvisor: true
-        });
-    </script>
-    <noscript>
-        <div><img src="https://mc.yandex.ru/watch/96473680" style="position:absolute; left:-9999px;" alt="" /></div>
-    </noscript>
-    <!-- /Yandex.Metrika counter -->
     <main>
-        <nav class="hidden">
-            <div class="nav__wrapper tab-active " data-nav-name="qrcode-gen" title="Qr Code">
-                <span class="svg-box"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960"
-                        width="24">
-                        <path
-                            d="M520-120v-80h80v80h-80Zm-80-80v-200h80v200h-80Zm320-120v-160h80v160h-80Zm-80-160v-80h80v80h-80Zm-480 80v-80h80v80h-80Zm-80-80v-80h80v80h-80Zm360-280v-80h80v80h-80ZM180-660h120v-120H180v120Zm-60 20v-160q0-17 11.5-28.5T160-840h160q17 0 28.5 11.5T360-800v160q0 17-11.5 28.5T320-600H160q-17 0-28.5-11.5T120-640Zm60 460h120v-120H180v120Zm-60 20v-160q0-17 11.5-28.5T160-360h160q17 0 28.5 11.5T360-320v160q0 17-11.5 28.5T320-120H160q-17 0-28.5-11.5T120-160Zm540-500h120v-120H660v120Zm-60 20v-160q0-17 11.5-28.5T640-840h160q17 0 28.5 11.5T840-800v160q0 17-11.5 28.5T800-600H640q-17 0-28.5-11.5T600-640Zm80 520v-120h-80v-80h160v120h80v80H680ZM520-400v-80h160v80H520Zm-160 0v-80h-80v-80h240v80h-80v80h-80Zm40-200v-160h80v80h80v80H400Zm-190-90v-60h60v60h-60Zm0 480v-60h60v60h-60Zm480-480v-60h60v60h-60Z" />
-                    </svg></span>
-                <span class="nw-text">Qr Code</span>
-            </div>
-            <div class="nav__wrapper hidden" data-nav-name="barcode-gen" title="Barcode">
-                <span class="svg-box"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960"
-                        width="24">
-                        <path
-                            d="M40-200v-560h80v560H40Zm120 0v-560h80v560h-80Zm120 0v-560h40v560h-40Zm120 0v-560h80v560h-80Zm120 0v-560h120v560H520Zm160 0v-560h40v560h-40Zm120 0v-560h120v560H800Z" />
-                    </svg></span>
-                <span class="nw-text">Barcode</span>
-            </div>
-            <div class="nav__wrapper hidden" data-nav-name="settings-gen" title="Settings">
-                <span class="svg-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-                        <path
-                            d="M555-80H405q-15 0-26-10t-13-25l-12-93q-13-5-24.5-12T307-235l-87 36q-14 5-28 1t-22-17L96-344q-8-13-5-28t15-24l75-57q-1-7-1-13.5v-27q0-6.5 1-13.5l-75-57q-12-9-15-24t5-28l74-129q7-14 21.5-17.5T220-761l87 36q11-8 23-15t24-12l12-93q2-15 13-25t26-10h150q15 0 26 10t13 25l12 93q13 5 24.5 12t22.5 15l87-36q14-5 28-1t22 17l74 129q8 13 5 28t-15 24l-75 57q1 7 1 13.5v27q0 6.5-2 13.5l75 57q12 9 15 24t-5 28l-74 128q-8 13-22.5 17.5T738-199l-85-36q-11 8-23 15t-24 12l-12 93q-2 15-13 25t-26 10Zm-73-260q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm0-80q-25 0-42.5-17.5T422-480q0-25 17.5-42.5T482-540q25 0 42.5 17.5T542-480q0 25-17.5 42.5T482-420Zm-2-60Zm-40 320h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Z" />
-                    </svg>
-                </span>
-                <span class="nw-text">Settings</span>
-            </div>
-        </nav>
-
         <div class="container qr-code-con">
+            <div class="header-container">
+                <div class="qr-size">
+                    <span>Размер QR</span>
+                    <input id="qr-size" type="range" value="100" min="10" max="100" step="10" list="tickmarks">
+                    <datalist id="tickmarks">
+                        <option value="10">
+                        <option value="20">
+                        <option value="30">
+                        <option value="40">
+                        <option value="50">
+                        <option value="60">
+                        <option value="70">
+                        <option value="80">
+                        <option value="90">
+                        <option value="100">
+                    </datalist>
+                </div>
+                <button class="download control-container" title="Скачать QR" data-size-qr="500">
+                    <span class="svg-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+                            <path
+                                d="M200-160h560q17 0 28.5 11.5T800-120q0 17-11.5 28.5T760-80H200q-17 0-28.5-11.5T160-120q0-17 11.5-28.5T200-160Zm280-105q-9 0-17.5-4T448-281L250-535q-15-20-4-42.5t36-22.5h78v-240q0-17 11.5-28.5T400-880h160q17 0 28.5 11.5T600-840v240h78q25 0 36 22.5t-4 42.5L512-281q-6 8-14.5 12t-17.5 4Z" />
+                        </svg>
+                    </span>
+                    <div class="popup-info">
+                        <div class="popup-item" title="100px" data-size-qr="100">
+                            <span>100x100</span>
+                        </div>
+                        <div class="popup-item" title="200px" data-size-qr="200">
+                            <span>200x200</span>
+                        </div>
+                        <div class="popup-item" title="300px" data-size-qr="300">
+                            <span>300x300</span>
+                        </div>
+                        <div class="popup-item" title="400px" data-size-qr="400">
+                            <span>400x400</span>
+                        </div>
+                        <div class="popup-item" title="500px" data-size-qr="500">
+                            <span>500x500</span>
+                        </div>
+                    </div>
+                </button>
+            </div>
 
-            <output class="qr-code-out" id="qrcode">
+            <output class="qr-code-out" id="qrcode"></output>
 
-            </output>
-            <!-- <div class="size-selection">
-                <div class="tab-active selector-size" data-size-qr="100">
-                    <span>100</span>
-                </div>
-                <div class="selector-size" data-size-qr="200">
-                    <span>200</span>
-                </div>
-                <div class="selector-size" data-size-qr="300">
-                    <span>300</span>
-                </div>
-                <div class="selector-size" data-size-qr="400">
-                    <span>400</span>
-                </div>
-                <div class="selector-size" data-size-qr="500">
-                    <span>500</span>
-                </div>
-            </div> -->
             <div class="input-wrapper">
                 <button class="save-history-button" title="Выключить историю изменений"></button>
                 <input type="text" name="qr-code-input" id="qr-code-input" placeholder="qr code" value="qr code">
@@ -108,46 +84,11 @@
                         </svg>
                     </span>
                 </button>
+
             </div>
-        </div>
-
-        <div class="container barcode-con hidden">
-
-            <output class="barcode-out">
-                <svg xmlns="http://www.w3.org/2000/svg" height="500" viewBox="0 -960 960 960" width="500">
-                    <path
-                        d="M40-200v-560h80v560H40Zm120 0v-560h80v560h-80Zm120 0v-560h40v560h-40Zm120 0v-560h80v560h-80Zm120 0v-560h120v560H520Zm160 0v-560h40v560h-40Zm120 0v-560h120v560H800Z" />
-                </svg>
-            </output>
-            <div class="input-wrapper">
-                <input type="text" name="barcode-input" id="barcode-input" placeholder="barcode"
-                    onFocus="this.select()">
-                <button class="paste add barcode-paste" title="Вставить из буфера обмена">
-                    <span class="svg-box rotateY">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-                            <path
-                                d="m720-120-56-57 63-63H480v-80h247l-63-64 56-56 160 160-160 160Zm120-400h-80v-240h-80v120H280v-120h-80v560h200v80H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h167q11-35 43-57.5t70-22.5q40 0 71.5 22.5T594-840h166q33 0 56.5 23.5T840-760v240ZM480-760q17 0 28.5-11.5T520-800q0-17-11.5-28.5T480-840q-17 0-28.5 11.5T440-800q0 17 11.5 28.5T480-760Z" />
-                        </svg>
-                    </span>
-                </button>
-            </div>
-        </div>
-        <div class="container settings-con hidden">
-
-            <output class="settings-out">
-                <svg xmlns="http://www.w3.org/2000/svg" height="500" viewBox="0 -960 960 960" width="500">
-                    <path
-                        d="M555-80H405q-15 0-26-10t-13-25l-12-93q-13-5-24.5-12T307-235l-87 36q-14 5-28 1t-22-17L96-344q-8-13-5-28t15-24l75-57q-1-7-1-13.5v-27q0-6.5 1-13.5l-75-57q-12-9-15-24t5-28l74-129q7-14 21.5-17.5T220-761l87 36q11-8 23-15t24-12l12-93q2-15 13-25t26-10h150q15 0 26 10t13 25l12 93q13 5 24.5 12t22.5 15l87-36q14-5 28-1t22 17l74 129q8 13 5 28t-15 24l-75 57q1 7 1 13.5v27q0 6.5-2 13.5l75 57q12 9 15 24t-5 28l-74 128q-8 13-22.5 17.5T738-199l-85-36q-11 8-23 15t-24 12l-12 93q-2 15-13 25t-26 10Zm-73-260q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm0-80q-25 0-42.5-17.5T422-480q0-25 17.5-42.5T482-540q25 0 42.5 17.5T542-480q0 25-17.5 42.5T482-420Zm-2-60Zm-40 320h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Z" />
-                </svg>
-            </output>
         </div>
         <div class="container">
             <div class="history-row">
-                <button class="reverse-history hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
-                        <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
-                    </svg>
-                </button>
                 <div class="history-output"></div>
                 <button class="remove-all-history" title="Удалить всю историю">
                     <span class="svg-box">
@@ -160,6 +101,8 @@
             </div>
         </div>
     </main>
+
+    <div class="fake-container"></div>
     <script src="script/index.js"></script>
 </body>
 
